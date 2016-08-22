@@ -126,8 +126,8 @@ IN NO EVENT SHALL TH
 .. _pdf: http://air.ug/~jquinn/papers/PRLetters_LSAnomalyDetection.pdf
 
 .. |Logo| image:: https://github.com/lsanomaly/lsanomaly/blob/master/docs/logo.png
-.. |PyPI| image:: https://img.shields.io/pypi/v/lsanomaly.svg?maxAge=2592000   
+.. |PyPI| image:: https://img.shields.io/pypi/v/lsanomaly.svg?maxAge=259200
           :target: https://pypi.python.org/pypi/lsanomaly
-.. |Language| image:: https://img.shields.io/badge/language-python-blue.svg?maxAge=2592000
-.. |Documentation| image:: https://img.shields.io/badge/docs-100%25-brightgreen.svg?maxAge=2592000
-.. |License| image:: https://img.shields.io/badge/license-MIT-7f7f7f.svg?maxAge=2592000
+.. |Language| image:: https://img.shields.io/badge/language-python-blue.svg?maxAge=259200
+.. |Documentation| image:: https://img.shields.io/badge/docs-100%25-brightgreen.svg?maxAge=259200
+.. |License| image:: https://img.shields.io/badge/license-MIT-7f7f7f.svg?maxAge=259200

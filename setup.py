@@ -10,14 +10,12 @@ install_requires = ['scikit-learn']
 
 setup(
     name='lsanomaly',
-    version='0.1.1',
+    version='0.1.2',
     url='https://github.com/lsanomaly/lsanomaly',
     description='Least squares anomaly detection.',
     long_description=readme,
-    author='John Quinn',
-    author_email='jquinn@cit.ac.ug',
-    maintainer='David Westerhoff',
-    maintainer_email='dmwesterhoff@gmail.com',
+    author='John Quinn, David Westerhoff',
+    author_email='jquinn@cit.ac.ug, dmwesterhoff@gmail.com',
     license='MIT',
     keywords='anomaly outlier novelty detection ' +
              'machine learning scikit-learn sklearn',

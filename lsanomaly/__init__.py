@@ -1,7 +1,7 @@
 """Least squares anomaly detection."""
 
 __title__ = 'lsanomaly'
-__version__ = '0.1.1'
+__version__ = '0.1.2'
 __license__ = 'MIT'
 
 import numpy as np
