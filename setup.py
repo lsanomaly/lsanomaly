@@ -8,7 +8,7 @@ install_requires = ['scikit-learn']
 
 setup(
     name='lsanomaly',
-    version='0.1.1',
+    version='0.1.2',
     url='https://github.com/lsanomaly/lsanomaly',
     description='Least squares anomaly detection.',
     long_description=readme,
