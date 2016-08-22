@@ -129,4 +129,4 @@ IN NO EVENT SHALL TH
 .. |Logo| image:: ./docs/logo.png
 .. |Language| image:: https://img.shields.io/badge/language-python-blue.svg
 .. |Documentation| image:: https://img.shields.io/badge/docs-100%25-brightgreen.svg
-.. |License| image:: https://img.shields.io/badge/license-MIT-blue.svg
+.. |License| image:: https://img.shields.io/badge/License-MIT-7f7f7f.svg
