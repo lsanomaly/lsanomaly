@@ -1,6 +1,6 @@
 |Logo|
 ------
-|Language| |License| |Documentation|
+|PyPI| |Language| |License| |Documentation|
 
 lsanomaly is a flexible, fast, probabilistic method for calculating outlier scores on test data, given training examples of inliers. Out of the box it works well with sci-kit learn packages. See the features section for why you might chose this model over other options.
 
@@ -126,6 +126,7 @@ IN NO EVENT SHALL TH
 .. _pdf: http://air.ug/~jquinn/papers/PRLetters_LSAnomalyDetection.pdf
 
 .. |Logo| image:: https://github.com/lsanomaly/lsanomaly/blob/master/docs/logo.png
-.. |Language| image:: https://img.shields.io/badge/language-python-blue.svg
-.. |Documentation| image:: https://img.shields.io/badge/docs-100%25-brightgreen.svg
-.. |License| image:: https://img.shields.io/badge/license-MIT-7f7f7f.svg
+.. |PyPI| image:: https://img.shields.io/pypi/v/lsanomaly.svg?maxAge=2592000
+.. |Language| image:: https://img.shields.io/badge/language-python-blue.svg?maxAge=2592000
+.. |Documentation| image:: https://img.shields.io/badge/docs-100%25-brightgreen.svg?maxAge=2592000
+.. |License| image:: https://img.shields.io/badge/license-MIT-7f7f7f.svg?maxAge=2592000
