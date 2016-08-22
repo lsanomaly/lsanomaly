@@ -1,14 +1,16 @@
+import re
+import codecs
 from setuptools import setup, find_packages
-from codecs import open
 
-with open('README.rst', 'r', 'utf-8') as f:
-    readme = f.read()
+with codecs.open('README.rst', 'r', 'utf-8') as f:
+    split = re.split('(Table of Contents)', f.read())
+    readme = split[1] + split[2]
 
 install_requires = ['scikit-learn']
 
 setup(
     name='lsanomaly',
-    version='0.1.2',
+    version='0.1.3',
     url='https://github.com/lsanomaly/lsanomaly',
     description='Least squares anomaly detection.',
     long_description=readme,
