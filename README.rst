@@ -122,7 +122,7 @@ IN NO EVENT SHALL TH
 .. _History: #history
 .. _License: #license
 .. _here: https://
-.. _changelog: https://
+.. _changelog: https://github.com/lsanomaly/lsanomaly/blob/master/CHANGELOG.md
 .. _pdf: http://air.ug/~jquinn/papers/PRLetters_LSAnomalyDetection.pdf
 
 .. |Logo| image:: https://github.com/lsanomaly/lsanomaly/blob/master/docs/logo.png
