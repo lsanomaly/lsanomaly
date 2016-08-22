@@ -1,4 +1,5 @@
 from setuptools import setup, find_packages
+from codecs import open
 
 with open('README.rst', 'r', 'utf-8') as f:
     readme = f.read()
