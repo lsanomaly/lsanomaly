@@ -2,7 +2,7 @@
 ------
 |PyPI| |Language| |License| |Documentation|
 
-lsanomaly is a flexible, fast, probabilistic method for calculating outlier scores on test data, given training examples of inliers. Out of the box it works well with sci-kit learn packages. See the features section for why you might chose this model over other options.
+lsanomaly is a flexible, fast, probabilistic method for calculating outlier scores on test data, given training examples of inliers. Out of the box it works well with scikit-learn packages. See the features section for why you might chose this model over other options.
 
 Table of Contents
 -----------------
