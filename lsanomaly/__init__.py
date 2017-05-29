@@ -18,6 +18,7 @@ def median_kneighbour_distance(X, k=5):
     kernel length scale.
     """
     N_all = X.shape[0]
+    k = min(k, N_all)
     N_subset = min(N_all, 2000)
     sample_idx_train = np.random.permutation(N_all)[:N_subset]
     nn = neighbors.NearestNeighbors(k)
