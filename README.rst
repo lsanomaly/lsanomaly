@@ -73,7 +73,7 @@ Now that the data is fit, we will probably want to try and predict on some data 
     >>> lsanomaly.predict(np.array([[0]]))
     [0.0]
     >>> lsanomaly.predict_proba(np.array([[0]]))
-    array([[ 0.5760205,  0.4239795]])
+    array([[ 0.7231233,  0.2768767]])
 
 Reference
 ---------
