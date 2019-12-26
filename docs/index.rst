@@ -141,7 +141,7 @@ Indices and tables
 Least Squares Anomaly Detection
 ===============================
 
-.. autoclass:: lsanomaly.LSAnomaly
+.. autoclass:: lsanomaly._lsanomaly.LSAnomaly
    :members: fit, predict, predict_proba, decision_function, score, predict_sequence
 
 Kernel Length Scale Approximation
