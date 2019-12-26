@@ -61,7 +61,7 @@ with `sklearn` modules where applicable. Here is basic usage of `lsanomaly` to g
 **Configuring the Model**
 
 LSAD provides reasonable default parameters when given an empty init or it can be passed values for `rho` and `sigma`. The value rho controls sensitivity to outliers and sigma determines the ‘smoothness’ of the
-boundary. These values can be tuned to improve your results using lsanomaly.
+boundary. These values can be tuned to improve your results using `lsanomaly`.
 
 .. code:: python
 
