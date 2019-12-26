@@ -1,14 +1,15 @@
 # CHANGE LOG
 ## Version 1.4
-- Move the algorithm out of `__init__()` to a `_lsanomaly.py` in keeping with the
-`scikit-learn` structure. This gives proper visibility to the class.
+- Move the algorithm out of `__init__` to  `_lsanomaly.py` in keeping with the
+`scikit-learn` structure. This gives proper visibility to the code.
+- Add convenience `import`s to the package `__init__`, a la scikit-learn.
 - Move length scale heuristics to `lengthscale_approx.py` to simplify the 
 `LSAnomaly` class.
 - `LSAnomaly.fit` method now returns `self`.
 - Use standard logging throughout.
-- Raise a `ValueError` if `X.dim < 2`.
-- Raise a `ValueError` in `score` if `y` is `None`.
-- Refactor `LSAnomaly.score`.
+- Raise exceptions when it makes sense.
+- Refactor `LSAnomaly.score` - possible bug.
+- Raise `NotImplementedError` for `get_/set_params` (for now).
 - In `predict`, change `all_classes.append("anomaly")` to `all_classes.append(1.0)` to
 match the original documentation.
 - Change the class docstring example from 4 to 5 elements since the code fails in
@@ -19,16 +20,16 @@ is serialized as JSON in `tests/data`.
 and create a LaTeX document with a table of results. The scripts can be run from
 the command line or programmatically - each of the three scripts has a documented
 `main()`.
-` Add Jupyter notebooks for sample applications.
+- Add Jupyter notebooks for sample applications.
 - Add a `Makefile` for basic clean up.
-- Add an optional `seed` argument to `LSAnomaly` for reproducibility.
+- Add an optional `seed` argument to `LSAnomaly` for reproducing results.
 - Refactor `setup.py` to allow tests to be run directly from `setup`.  
 - Use Google style docstrings.
 - Add Sphinx documentation.
 - Adhere to PEP8.
 - Bump version to 1.4.0
 
-## Test Coverage
+### Test Coverage
 ```
 $ py.test --cov
 
@@ -49,5 +50,4 @@ lsanomaly/version.py                      1      0   100%
 ---------------------------------------------------------
 TOTAL                                   350      4    99%
 
-============================================== 14 passed, 1 warnings in 1.78s
 ```

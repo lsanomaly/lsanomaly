@@ -142,7 +142,7 @@ Least Squares Anomaly Detection
 ===============================
 
 .. autoclass:: lsanomaly._lsanomaly.LSAnomaly
-   :members: fit, predict, predict_proba, decision_function, score, predict_sequence
+   :members: fit, predict, predict_proba, decision_function, score, predict_sequence, get_params, set_params
 
 Kernel Length Scale Approximation
 =================================

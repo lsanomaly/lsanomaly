@@ -189,6 +189,28 @@ class LSAnomaly(base.BaseEstimator):
         logger.debug("time: {:6.4f}s".format(time.time() - start))
         return self
 
+    def get_params(self, deep=True):
+        """
+        Not implemented.
+
+        Args:
+            deep (bool):
+
+        Returns:
+
+        """
+        raise NotImplementedError
+
+    def set_params(self, **params):
+        """
+        Not implemented.
+
+        Args:
+            **params (dict):
+
+        """
+        raise NotImplementedError
+
     def predict(self, X):
         """
         Assign classes to test data.

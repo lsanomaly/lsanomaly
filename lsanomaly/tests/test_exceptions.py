@@ -23,3 +23,13 @@ def test_exception_score(anomaly_model, example_arrays):
     X_train, _, _, _ = example_arrays
     with pytest.raises(ValueError):
         anomaly_model.score(X_train, None)
+
+
+def test_exception_get(anomaly_model):
+    with pytest.raises(NotImplementedError):
+        anomaly_model.get_params()
+
+
+def test_exception_set(anomaly_model):
+    with pytest.raises(NotImplementedError):
+        anomaly_model.set_params(x=1)
