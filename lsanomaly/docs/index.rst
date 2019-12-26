@@ -124,6 +124,80 @@ J.A. Quinn, M. Sugiyama. A least-squares approach to anomaly detection in static
 .. |Documentation| image:: https://img.shields.io/badge/docs-100%25-brightgreen.svg?maxAge=259200
 .. |License| image:: https://img.shields.io/badge/license-MIT-7f7f7f.svg?maxAge=259200
 
+Least Squares Anomaly Detection API
+-----------------------------------
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+
+Least Squares Anomaly Detection
+===============================
+
+.. autoclass:: lsanomaly.LSAnomaly
+   :members: fit, predict, predict_proba, decision_function, score, predict_sequence
+
+Kernel Length Scale Approximation
+=================================
+.. automodule:: lsanomaly.lengthscale_approx
+   :members: median_kneighbour_distance, pair_distance_centile
+
+Evaluating LSAnomaly
+--------------------
+Scripts for evaluating `lsanomaly` against other methods is provided in J Quinn's software
+https://cit.mak.ac.ug/staff/jquinn/software/lsanomaly.html.
+Owing to changes in APIs and availability of some test data, that code has been refactored and expanded.
+
+There are three commandline applications that will be download the test data, perform a 5-fold
+cross-validation and, produce a LaTeX document summarizing the results. Each of the three applications has
+a `main` method that can be used for further automation.
+
+The following datasets are configured for download (see `evaluate/eval_params.yml`) from
+https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/.
+
+- australian
+- breast-cancer
+- cod-rna
+- colon-cancer.bz2
+- diabetes
+- dna.scale
+- glass.scale
+- heart
+- ionosphere_scale
+- letter.scale
+- leu.bz2
+- mnist.bz2
+- mushrooms
+- pendigits
+- satimage.scale
+- sonar_scale
+
+Those with an extension of `.bz2` will be inflated. The compressed
+version is retained.
+
+
+Downloading Test Data
+=====================
+.. automodule:: lsanomaly.evaluate.download
+   :members: main, unzip_write, write_contents, get_request
+
+Evaluating the Test Data
+========================
+.. automodule:: lsanomaly.evaluate.run_eval
+   :members: evaluate, gen_data, gen_dataset, main
+
+Create a Results Table in LaTeX
+===============================
+.. automodule:: lsanomaly.evaluate.generate_latex
+   :members: results_table, main
+
 License
 -------
 The MIT License (MIT)
@@ -148,3 +222,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 IN THE SOFTWARE.
+

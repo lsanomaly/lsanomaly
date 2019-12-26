@@ -1,0 +1,14 @@
+[report]
+exclude_lines =
+    pragma: no cover
+    def __repr__
+    raise NotImplementedError
+    if __name__ ==.__main__.:
+    if typing.TYPE_CHECKING
+[run]
+omit =
+    lsanomaly/notebooks/*
+    lsanomaly/__init__.py
+    tests/conftest.py
+    lsanomaly/evaluate/*
+source = lsanomaly
