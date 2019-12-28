@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-.. image:: logo.png
+.. image:: https://github.com/christophsk/lsanomaly/blob/master/docs/logo.png
   :width: 400
 
 |PyPI| |Language| |License| |Documentation|
