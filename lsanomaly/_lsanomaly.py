@@ -46,6 +46,11 @@ def _check_shape(x):
         logger.debug("array shape: {}".format(x.shape))
 
 
+def _check_sigma(sigma):
+    if np.isclose(np.array(sigma), np.array([0.0])):
+        raise ValueError("knn distance is too small, got {:0.4f}")
+
+
 class LSAnomaly(base.BaseEstimator):
     __version__ = v.__version__
 
@@ -109,6 +114,7 @@ class LSAnomaly(base.BaseEstimator):
         self.n_classes = None
 
         if not (sigma is None or isinstance(sigma, str)):
+            _check_sigma(sigma)
             self.gamma = sigma ** -2
         if gamma is not None:
             self.sigma = gamma ** -0.5
@@ -158,6 +164,7 @@ class LSAnomaly(base.BaseEstimator):
         # If no kernel parameters specified, try to choose some defaults
         if not self.sigma:
             self.sigma = median_kneighbour_distance(X, k=k)
+            _check_sigma(self.sigma)
             self.gamma = self.sigma ** -2
 
         if not self.gamma:

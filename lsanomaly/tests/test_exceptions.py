@@ -33,3 +33,8 @@ def test_exception_get(anomaly_model):
 def test_exception_set(anomaly_model):
     with pytest.raises(NotImplementedError):
         anomaly_model.set_params(x=1)
+
+
+def test_exception_zero_ls(mc_model, pathological_x):
+    with pytest.raises(ValueError):
+        mc_model.fit(pathological_x)

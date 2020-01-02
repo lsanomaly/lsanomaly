@@ -55,6 +55,11 @@ def doc_arrays():
     return x_train, predict_prob
 
 
+@pytest.fixture(scope="session")
+def pathological_x():
+    return np.array([[1], [1], [1], [1], [1], [1]])
+
+
 @pytest.fixture(scope="function")
 def anomaly_model():
     return LSAnomaly(rho=1, sigma=0.5, seed=42)
