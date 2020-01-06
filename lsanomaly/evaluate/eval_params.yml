@@ -1,0 +1,23 @@
+evaluation:
+  datasets:
+    - australian
+    - breast-cancer
+    - cod-rna
+    - colon-cancer.bz2
+    - diabetes
+    - dna.scale
+    - glass.scale
+    - heart
+    - ionosphere_scale
+    - letter.scale
+    - leu.bz2
+    - mnist.bz2
+    - mushrooms
+    - pendigits
+    - satimage.scale
+    - sonar_scale
+  methods:
+    - LSAD
+    - OCSVM
+    - KNN
+    - KM
