@@ -1,5 +1,5 @@
-# CHANGE LOG
-## Version 1.4
+# CHANGELOG
+## v0.1.4
 - Move the algorithm out of `__init__` to  `_lsanomaly.py` in keeping with the
 `scikit-learn` structure. This gives proper visibility to the code.
 - Add convenience `import`s to the package `__init__`, a la scikit-learn.

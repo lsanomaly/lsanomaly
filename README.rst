@@ -95,7 +95,7 @@ Now that the data is fit, we will probably want to try and predict on some data 
 
 Documentation
 -------------
-Full documentation can be built using Sphinx.
+Check out the latest docs here: https://lsanomaly.readthedocs.io/en/latest/
 
 Examples
 --------
