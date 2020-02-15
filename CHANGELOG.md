@@ -3,6 +3,7 @@
 - Remove `pair_centile_distance()` from `lengthscale_approx.py` as it was unused.
 - Update `requirements.txt` to most current versions of everything.
 - Make x-axes line up in plotting `dynamic.py`.
+- Change `pythonpackage.yml` to have `python-version: [3.6, 3.7]` (fixes package check failure).
 - Fix various typos
 ## v0.1.4
 - Move the algorithm out of `__init__` to  `_lsanomaly.py` in keeping with the
