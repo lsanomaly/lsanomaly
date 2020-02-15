@@ -18,8 +18,10 @@ with open(path.join(here, "README.rst"), encoding="utf-8") as f:
     LONG_DESCRIPTION = split[1] + split[2]
     LONG_DESCRIPTION_TYPE = "text/markdown"
 
-DATA = {"lsanomaly/evaluate": ["eval_params.yml"],
-        "lsanomaly/notebooks": ["filtered_ecg.json"]}
+DATA = {
+    "lsanomaly/evaluate": ["eval_params.yml"],
+    "lsanomaly/notebooks": ["filtered_ecg.json"],
+}
 
 
 class PyTest(TestCommand):

@@ -222,14 +222,10 @@ if __name__ == "__main__":
         dest="mc_url",
         required=False,
         default=_mc_url,
-        help="optional: Multi-class test data URL; default: {}".format(
-            _mc_url
-        ),
+        help="optional: Multi-class test data URL; default: {}".format(_mc_url),
     )
     args = parser.parse_args()
     try:
-        sys.exit(
-            main(args.yml_params, args.sc_url, args.mc_url, args.data_dir)
-        )
+        sys.exit(main(args.yml_params, args.sc_url, args.mc_url, args.data_dir))
     except SystemExit:
         pass

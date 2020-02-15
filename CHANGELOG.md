@@ -1,4 +1,9 @@
 # CHANGELOG
+## v0.1.5
+- Remove `pair_centile_distance()` from `lengthscale_approx.py` as it was unused.
+- Update `requirements.txt` to most current versions of everything.
+- Make x-axes line up in plotting `dynamic.py`.
+- Fix various typos
 ## v0.1.4
 - Move the algorithm out of `__init__` to  `_lsanomaly.py` in keeping with the
 `scikit-learn` structure. This gives proper visibility to the code.
