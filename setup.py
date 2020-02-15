@@ -61,7 +61,7 @@ setup(
     ],
     cmdclass={"test": PyTest},
     url="https://github.com/lsanomaly/lsanomaly",
-    author_email="John Quinn <jquinn@cit.ac.ug>, David Westerhoff <dmwesterhoff@gmail.com>, Chris Skiscim <christoph@protonmail.com>",
+    author_email="John Quinn <jquinn@cit.ac.ug>, David Westerhoff <dmwesterhoff@gmail.com>, Chris Skiscim <skiscim_chris@bah.com",
     description="Least squares anomaly detection.",
     long_description=LONG_DESCRIPTION,
     long_description_content_type=LONG_DESCRIPTION_TYPE,
