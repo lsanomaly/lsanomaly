@@ -11,7 +11,6 @@ def test_multiclass_digits_prediction(
 ):
     X_train, X_test, y_train, y_test = digits_x_y
 
-    logger.debug(mc_model)
     mc_model.fit(X_train, y_train)
 
     predictions = mc_model.predict_proba(X_test)

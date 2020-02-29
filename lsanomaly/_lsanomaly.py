@@ -39,7 +39,7 @@ logger.addHandler(logging.NullHandler())
 
 def _check_shape(x):
     if x.ndim < 2:
-        msg = "array must have dimension > 1; got {}".format(x.shape)
+        msg = "array must have dimension > 1"
         logger.error(msg)
         raise ValueError(msg)
     else:
@@ -48,7 +48,9 @@ def _check_shape(x):
 
 def _check_sigma(sigma):
     if np.isclose(np.array(sigma), np.array([0.0])):
-        raise ValueError("knn distance is too small, got {:0.4f}")
+        raise ValueError(
+            "knn distance is too small, got {:0.4f}".format(sigma)
+        )  # noqa
 
 
 class LSAnomaly(base.BaseEstimator):
@@ -189,11 +191,11 @@ class LSAnomaly(base.BaseEstimator):
         phi = metrics.pairwise.rbf_kernel(X, self.kernel_pos, self.gamma)
         phi_dot_phi = np.dot(phi.T, phi)
         inverse_term = np.linalg.inv(phi_dot_phi + self.rho * np.eye(B))
+        # self._iter_classes(y, phi, inverse_term)
         for c in self.classes:
             m = (y == c).astype(int)
             self.theta[c] = np.dot(inverse_term, np.dot(phi.T, m))
-
-        logger.debug("time: {:6.4f}s".format(time.time() - start))
+        logger.debug("that took {:6.4f}s".format(time.time() - start))
         return self
 
     def get_params(self, deep=True):

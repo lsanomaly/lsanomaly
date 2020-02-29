@@ -75,7 +75,7 @@ def plot_results(
                 X[:, 0], X[:, 1], c="black", marker="+", s=50, linewidth=2
             )
             subplot.set_title(
-                "$\sigma = $ %.3g, $\\rho$ = %.3g" % (sigma, rho),
+                "$\\sigma = ${:3.3f}$, $\\rho$ = {:3.3f}".format(sigma, rho),
                 fontsize=14,
                 usetex=True,
             )
