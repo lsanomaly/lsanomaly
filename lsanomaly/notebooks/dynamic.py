@@ -29,7 +29,7 @@ def data_prep(data_file="filtered_ecg.json", lag=10):
     return X_train, X_test
 
 
-def plot_results(X_test, y_pred_static, y_pred_dynamic):
+def plot_results(X_test, y_pred_static, y_pred_dynamic, static_threshold=0.0):
     _ = plt.figure(figsize=(12, 6))
     f_size = 16
 
@@ -49,6 +49,7 @@ def plot_results(X_test, y_pred_static, y_pred_dynamic):
     plt.xticks([])
     plt.ylabel("ECG 2", rotation="horizontal", fontsize=f_size, ha="right")
 
+    # static scores
     plt.subplot(4, 1, 3)
     plt.plot(y_pred_static[:, 1], "r")
     plt.xticks([])
@@ -60,6 +61,7 @@ def plot_results(X_test, y_pred_static, y_pred_dynamic):
         fontsize=f_size,
     )
 
+    # dynamic scores
     plt.subplot(4, 1, 4)
     plt.plot(y_pred_dynamic[:, 1], "r")
     plt.ylim([-0.05, 1.05])

@@ -6,7 +6,7 @@ import sys
 from os import path
 
 from setuptools import setup, find_packages
-from setuptools.command.test import test as TestCommand
+from setuptools.command.test import test as test_command
 
 __version__ = None
 exec(open("lsanomaly/version.py").read())
@@ -24,9 +24,9 @@ DATA = {
 }
 
 
-class PyTest(TestCommand):
+class PyTest(test_command):
     def finalize_options(self):
-        TestCommand.finalize_options(self)
+        test_command.finalize_options(self)
         self.test_args = list()
         self.test_suite = True
 
@@ -34,7 +34,7 @@ class PyTest(TestCommand):
         try:
             import pytest
         except ImportError as e:
-            print("pytest must be installed to run tests.")
+            print("pytest must be installed to run the tests.")
             print("{}: {}".format(type(e), str(e)))
             raise
 
