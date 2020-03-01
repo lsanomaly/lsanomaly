@@ -9,7 +9,6 @@ logger.addHandler(logging.NullHandler())
 def test_ecg_static(
     anomaly_model, x_train_test_ecg, y_expected_static_ecg, check_ndarray
 ):
-    logger.debug(anomaly_model)
     x_train, x_test = x_train_test_ecg
 
     anomaly_model.fit(x_train)
@@ -21,7 +20,6 @@ def test_ecg_static(
 def test_ecg_dynamic(
     anomaly_model, x_train_test_ecg, y_expected_dynamic_ecg, check_ndarray
 ):
-    logger.debug(anomaly_model)
     x_train, x_test = x_train_test_ecg
     anomaly_model.fit(x_train)
 

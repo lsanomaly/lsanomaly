@@ -1,5 +1,16 @@
 # CHANGELOG
+## v0.1.5
+#### C Skiscim
+- Remove `pair_centile_distance()` from `lengthscale_approx.py` as it was unused.
+- Update `requirements.txt` to most current versions of everything.
+- Remove dead links; fix typos; less garish colors in `static_mix.py`.
+- Make the _x_-axes line up in plotting `dynamic.py`.
+- Fix logging format error in the test scripts.
+- Change `pythonpackage.yml` to have `python-version: [3.6, 3.7]` (fixes package check failure).
+- Various PEP8 corrections for a clean `flake8` run; reformat text where appropriate.
+- Bump version to 0.1.5
 ## v0.1.4
+#### C Skiscim
 - Move the algorithm out of `__init__` to  `_lsanomaly.py` in keeping with the
 `scikit-learn` structure. This gives proper visibility to the code.
 - Add convenience `import`s to the package `__init__`, a la scikit-learn.
@@ -22,12 +33,16 @@ the command line or programmatically - each of the three scripts has a documente
 `main()`.
 - Add Jupyter notebooks for sample applications.
 - Add a `Makefile` for basic clean up.
-- Add an optional `seed` argument to `LSAnomaly` for reproducing results.
+- Add an optional `seed` argument (RNG) to `LSAnomaly` for reproducing results.
 - Refactor `setup.py` to allow tests to be run directly from `setup`.  
 - Use Google style docstrings.
 - Add Sphinx documentation.
 - Adhere to PEP8.
 - Bump version to 1.4.0
+
+## v0.1.3
+#### D Westerhoff
+- Package for PyPy, etc.
 
 ### Test Coverage
 ```

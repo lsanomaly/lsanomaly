@@ -29,7 +29,7 @@ def data_prep(data_file="filtered_ecg.json", lag=10):
     return X_train, X_test
 
 
-def plot_results(X_test, y_pred_static, y_pred_dynamic):
+def plot_results(X_test, y_pred_static, y_pred_dynamic, static_threshold=0.0):
     _ = plt.figure(figsize=(12, 6))
     f_size = 16
 
@@ -37,38 +37,36 @@ def plot_results(X_test, y_pred_static, y_pred_dynamic):
     plt.plot(X_test[:, 1])
     plt.ylabel("ECG 1", rotation="horizontal", fontsize=f_size, ha="right")
     plt.grid(which="major", axis="x")
-    plt.xticks(plt.xticks()[0], "", fontsize=f_size)
+    plt.xticks([], "", fontsize=f_size)
 
     plt.title(
         "Detection of cardiac arrhythmia from ECG sequence",
         fontsize=f_size + 2,
         fontweight="medium",
     )
-
     plt.subplot(4, 1, 2)
     plt.plot(X_test[:, 3])
-    plt.grid(which="major", axis="x")
-    plt.xticks(plt.xticks()[0], "", fontsize=f_size)
+    plt.xticks([])
     plt.ylabel("ECG 2", rotation="horizontal", fontsize=f_size, ha="right")
 
+    # static scores
     plt.subplot(4, 1, 3)
     plt.plot(y_pred_static[:, 1], "r")
-    plt.xticks(plt.xticks()[0], "", fontsize=f_size)
-    plt.grid(which="major", axis="both")
+    plt.xticks([])
     plt.ylim([-0.05, 1.05])
     plt.ylabel(
-        "Anomaly\nscore\n(static)",
+        "\nAnomaly\nscore\n(static)",
         rotation="horizontal",
         ha="right",
         fontsize=f_size,
     )
-    #
+
+    # dynamic scores
     plt.subplot(4, 1, 4)
     plt.plot(y_pred_dynamic[:, 1], "r")
-    plt.grid(which="major", axis="both")
     plt.ylim([-0.05, 1.05])
     plt.ylabel(
-        "Anomaly\nscore\n(dynamic)",
+        "\nAnomaly\nscore\n(dynamic)",
         rotation="horizontal",
         ha="right",
         fontsize=f_size,

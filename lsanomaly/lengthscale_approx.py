@@ -65,36 +65,3 @@ def median_kneighbour_distance(X, k=5, seed=None):
     d, idx = nn.kneighbors(X[sample_idx_train, :])
 
     return np.median(d[:, -1])
-
-
-def pair_distance_centile(X, centile, max_pairs=5000, seed=None):
-    """
-    Calculate centiles of distances between random pairs in a data-set.
-    This an alternative to the median kNN distance for setting the kernel
-    length scale.
-
-    Args:
-        X (numpy.ndarray): Data observations
-        centile (int): distance centile
-        max_pairs (int): maximum number of pairs to consider
-        seed (int): random number seed
-
-    Returns:
-        float: length scale estimate
-    """
-    if seed is not None:
-        np.random.seed(seed)
-
-    n = X.shape[0]
-    n_pairs = min(max_pairs, n ** 2)
-
-    dists = np.zeros(n_pairs)
-
-    for i in range(n_pairs):
-        pair = np.random.randint(0, n, 2)
-        pair_diff = X[pair[0], :] - X[pair[1], :]
-        dists[i] = np.dot(pair_diff, pair_diff.T)
-    dists.sort()
-
-    out = dists[int(n_pairs * centile / 100.0)]
-    return np.sqrt(out)

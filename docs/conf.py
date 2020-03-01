@@ -20,11 +20,11 @@ print("***** CWD {}".format(os.getcwd()))
 # -- Project information -----------------------------------------------------
 
 project = "Least Squares Anomaly Detection"
-copyright = "2019, John Quinn"
+copyright = "2019, 2020 John Quinn, David Westerhoff, Chris Skiscim"
 author = "John Quinn"
 
 # The full version, including alpha/beta/rc tags
-release = "1.4"
+release = "0.1.5"
 
 
 # -- General configuration ---------------------------------------------------

@@ -5,6 +5,7 @@ Least Squares Anomaly Detection
 # The MIT License (MIT)
 #
 # Copyright (c) 2016 John Quinn
+# Copyright (c) 2019, 202 David Westerhoff, Chris Skiscim
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"),
@@ -39,7 +40,7 @@ logger.addHandler(logging.NullHandler())
 
 def _check_shape(x):
     if x.ndim < 2:
-        msg = "array must have dimension > 1; got {}".format(x.shape)
+        msg = "array must have dimension > 1"
         logger.error(msg)
         raise ValueError(msg)
     else:
@@ -48,7 +49,9 @@ def _check_shape(x):
 
 def _check_sigma(sigma):
     if np.isclose(np.array(sigma), np.array([0.0])):
-        raise ValueError("knn distance is too small, got {:0.4f}")
+        raise ValueError(
+            "knn distance is too small, got {:0.4f}".format(sigma)
+        )  # noqa
 
 
 class LSAnomaly(base.BaseEstimator):
@@ -70,15 +73,14 @@ class LSAnomaly(base.BaseEstimator):
         Args:
             n_kernels_max (int): optional (default 500)
 
-            kernel_pos (numpy.ndarray): The positions of the kernel centers can
-            be specified. Default is to select them as a random subset of the
-            training data.
+            kernel_pos (numpy.ndarray): The positions of the kernel basis
+            functions can  be specified. Default is to select them as a random
+            subset of the training data.
 
-            sigma (float|str): Kernel length scale parameter. If set to
-            'mediandist', then at training time half the median distance
-            between a random set of pairs of data points in the training data
-            will be used as a default setting. See
-            :py:meth: `lengthscale_ approx`
+            sigma (float): Kernel length scale parameter. If `None`, it will
+            approximated using a k-nearest neighbors with parameter `k`
+            specified as an argument in the `fit()` method. See
+            :py:meth: `lengthscale_approx`.
 
             rho (float): Regularization parameter. Higher values give greater
             sensitivity to outliers.
@@ -88,6 +90,16 @@ class LSAnomaly(base.BaseEstimator):
             `sigma = 1/sqrt(gamma)`.
 
             seed (int): Random number seed
+
+        Attributes:
+            n_kernels_max (int): The size of the subset of the training points
+            for which we'll have a kernel basis function. We'll have
+            `B = max(N, n_kernels_max)` where `N` is the size of the training
+            set.
+
+            kernel_pos (numpy.ndarray): The first `max(N, n_kernels_max)` in
+            a random permutation of `N` of the traning data `X`. The kernel
+            basis function will be evaluated at these points.
 
         Example
             >>> from lsanomaly import LSAnomaly
@@ -109,7 +121,7 @@ class LSAnomaly(base.BaseEstimator):
         self.rho = rho
         self.seed = seed
 
-        self.theta = dict()
+        self._theta = dict()
         self.classes = None
         self.n_classes = None
 
@@ -132,7 +144,8 @@ class LSAnomaly(base.BaseEstimator):
 
         Args:
             X (numpy.ndarray): Examples of inlier data, of dimension N
-            times d (rows are examples, columns are data dimensions)
+            times d (rows are examples, columns are data dimensions/classes).
+            Typically, this is an N-dimensional column vector.
 
             y (numpy.ndarray): If the inliers have multiple classes, then `y`
             contains the class assignments as a vector of length N. If this is
@@ -140,7 +153,7 @@ class LSAnomaly(base.BaseEstimator):
             of the inlier classes or to the outlier class.
 
             k (int): Number of nearest neighbors to use in the KNN
-            kernel length scale heuristic.
+            kernel length scale heuristic (see :py:meth: `lengthscale_approx`)
 
         Returns:
             self
@@ -150,7 +163,6 @@ class LSAnomaly(base.BaseEstimator):
         _check_shape(X)
 
         N = X.shape[0]
-        logger.debug("X shape: {}".format(X.shape))
 
         if not isinstance(y, np.ndarray):
             y = np.zeros(N)
@@ -177,23 +189,26 @@ class LSAnomaly(base.BaseEstimator):
         logger.debug("gamma : {:>6.4f}".format(self.gamma))
         logger.debug("rho   : {:>6.4f}".format(self.rho))
 
-        # choose kernel basis centres
+        # choose kernel basis centres - random permutation
         if self.kernel_pos is None:
             B = min(self.n_kernels_max, N)
             kernel_idx = np.random.permutation(N)
             self.kernel_pos = X[kernel_idx[:B]]
+            # print("X at {} selected positions:\n{}".format(B, self.kernel_pos))
         else:
             B = self.kernel_pos.shape[0]
 
         # fit coefficients
         phi = metrics.pairwise.rbf_kernel(X, self.kernel_pos, self.gamma)
-        phi_dot_phi = np.dot(phi.T, phi)
+        # print("phi shape: {}".format(phi.shape))
+        phi_dot_phi = phi.T.dot(phi)
+        # print("dot(phi.T, phi) shape: {}".format(phi_dot_phi.shape))
         inverse_term = np.linalg.inv(phi_dot_phi + self.rho * np.eye(B))
         for c in self.classes:
             m = (y == c).astype(int)
-            self.theta[c] = np.dot(inverse_term, np.dot(phi.T, m))
-
-        logger.debug("time: {:6.4f}s".format(time.time() - start))
+            phi_dot_m = phi.T.dot(m)
+            self._theta[c] = inverse_term.dot(phi_dot_m)
+        logger.debug("that took {:6.4f}s".format(time.time() - start))
         return self
 
     def get_params(self, deep=True):
@@ -203,8 +218,6 @@ class LSAnomaly(base.BaseEstimator):
         Args:
             deep (bool):
 
-        Returns:
-
         """
         raise NotImplementedError
 
@@ -213,7 +226,7 @@ class LSAnomaly(base.BaseEstimator):
         Not implemented.
 
         Args:
-            **params (dict):
+            params (dict):
 
         """
         raise NotImplementedError
@@ -227,9 +240,7 @@ class LSAnomaly(base.BaseEstimator):
             examples, columns are data dimensions)
 
         Returns:
-            numpy.ndarray:
-
-            A vector of length N containing assigned classes.
+            numpy.ndarray: A vector of length N containing assigned classes.
             If no inlier classes were specified during training, then 0 denotes
             an inlier and 1 denotes an outlier. If multiple inlier classes were
             specified, then each element of y_predicted is either one of those
@@ -258,8 +269,7 @@ class LSAnomaly(base.BaseEstimator):
             examples, columns are data dimensions)
 
         Returns
-            numpy.ndarray:
-            An array of dimension N times n_inlier_classes+1,
+            numpy.ndarray: An array of dimension N times n_inlier_classes+1,
             containing the probabilities of each row of X being one of the
             inlier classes, or the outlier class (last column).
 
@@ -273,14 +283,16 @@ class LSAnomaly(base.BaseEstimator):
             post = np.zeros(self.n_classes)
             for c in range(self.n_classes):
                 post[c] = max(
-                    0.0,
-                    float(np.dot(self.theta[self.classes[c]].T, phi[i, :])),
+                    0.0, self._theta_dot_phi_i(c, phi[i, :])
                 )
                 post[c] = min(post[c], 1.0)
             predictions[i, :-1] = post
             predictions[i, -1] = max(0, 1 - sum(post))
 
         return predictions
+
+    def _theta_dot_phi_i(self, class_c, phi_i):
+        return float(np.dot(self._theta[self.classes[class_c]].T, phi_i))
 
     def decision_function(self, X):
         """
@@ -291,8 +303,7 @@ class LSAnomaly(base.BaseEstimator):
             examples, columns are data dimensions)
 
         Returns:
-            numpy.ndarray:
-            A vector of length N, where each element contains an
+            numpy.ndarray: A vector of length N, where each element contains an
             inlier score in the range 0-1 (outliers have values close to zero,
             inliers have values close to one).
 
@@ -310,7 +321,7 @@ class LSAnomaly(base.BaseEstimator):
         """
         _check_shape(X)
         if y is None:
-            raise ValueError("y cannot be None")
+            raise ValueError("y cannot be 'None'")
 
         predictions = self.predict(X)
         total = len(predictions)

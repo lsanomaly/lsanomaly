@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 .. image:: https://github.com/christophsk/lsanomaly/blob/master/docs/logo.png
-  :width: 400
+  :width: 250
 
 |PyPI| |Language| |License| |Documentation|
 
@@ -51,6 +51,12 @@ Tests can be run from `setup` if `pytest` is installed:
 ::
 
    python setup.py test
+
+or the usual
+
+::
+
+   py.test -v
 
 Usage
 -----
@@ -128,7 +134,7 @@ License
 -------
 The MIT License (MIT)
 
-Copyright (c) 2016 John Quinn
+Copyright (c) 2016-2020 John Quinn, David Westerhoff, Chris Skiscim
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the

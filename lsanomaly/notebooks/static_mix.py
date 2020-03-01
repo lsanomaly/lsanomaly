@@ -63,7 +63,7 @@ def plot_results(
                 yy,
                 Z,
                 levels=np.linspace(0, 1, 11),
-                cmap=plt.cm.get_cmap("GnBu"),
+                cmap=plt.cm.get_cmap("Blues"),
             )
             subplot.contour(
                 xx, yy, Z, levels=[threshold], linewidths=2, colors="red"
@@ -75,7 +75,7 @@ def plot_results(
                 X[:, 0], X[:, 1], c="black", marker="+", s=50, linewidth=2
             )
             subplot.set_title(
-                "$\sigma = $ %.3g, $\\rho$ = %.3g" % (sigma, rho),
+                "$\\sigma = {:3.2f}$, $\\rho = {:3.2f}$".format(sigma, rho),
                 fontsize=14,
                 usetex=True,
             )

@@ -6,7 +6,7 @@ import sys
 from os import path
 
 from setuptools import setup, find_packages
-from setuptools.command.test import test as TestCommand
+from setuptools.command.test import test as test_command
 
 __version__ = None
 exec(open("lsanomaly/version.py").read())
@@ -18,13 +18,15 @@ with open(path.join(here, "README.rst"), encoding="utf-8") as f:
     LONG_DESCRIPTION = split[1] + split[2]
     LONG_DESCRIPTION_TYPE = "text/markdown"
 
-DATA = {"lsanomaly/evaluate": ["eval_params.yml"],
-        "lsanomaly/notebooks": ["filtered_ecg.json"]}
+DATA = {
+    "lsanomaly/evaluate": ["eval_params.yml"],
+    "lsanomaly/notebooks": ["filtered_ecg.json"],
+}
 
 
-class PyTest(TestCommand):
+class PyTest(test_command):
     def finalize_options(self):
-        TestCommand.finalize_options(self)
+        test_command.finalize_options(self)
         self.test_args = list()
         self.test_suite = True
 
@@ -32,7 +34,7 @@ class PyTest(TestCommand):
         try:
             import pytest
         except ImportError as e:
-            print("pytest must be installed to run tests.")
+            print("pytest must be installed to run the tests.")
             print("{}: {}".format(type(e), str(e)))
             raise
 
@@ -59,7 +61,7 @@ setup(
     ],
     cmdclass={"test": PyTest},
     url="https://github.com/lsanomaly/lsanomaly",
-    author_email="John Quinn <jquinn@cit.ac.ug>, David Westerhoff <dmwesterhoff@gmail.com>, Chris Skiscim <christoph@protonmail.com>",
+    author_email="John Quinn <jquinn@cit.ac.ug>, David Westerhoff <dmwesterhoff@gmail.com>, Chris Skiscim <skiscim_chris@bah.com",
     description="Least squares anomaly detection.",
     long_description=LONG_DESCRIPTION,
     long_description_content_type=LONG_DESCRIPTION_TYPE,
