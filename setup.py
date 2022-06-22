@@ -51,7 +51,7 @@ setup(
     tests_require=["pytest"],
     install_requires=[
         "matplotlib==3.1.2",
-        "numpy==1.18.0",
+        "numpy==1.22.0",
         "pyaml>=19.4",
         "requests==2.22.0",
         "scikit-learn==0.21.3",
