@@ -55,7 +55,7 @@ setup(
         "pyaml>=19.4",
         "requests==2.22.0",
         "scikit-learn==0.21.3",
-        "scipy==1.3.3",
+        "scipy==1.10.0",
     ],
     cmdclass={"test": PyTest},
     url="https://github.com/lsanomaly/lsanomaly",
